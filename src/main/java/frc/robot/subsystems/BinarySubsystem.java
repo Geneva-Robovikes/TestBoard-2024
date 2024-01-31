@@ -11,19 +11,18 @@ public class BinarySubsystem extends SubsystemBase {
 
     ADIS16448_IMU gyro = new ADIS16448_IMU();
 
-
     public BinarySubsystem() {
         falcon = new TalonFX(0);
     }
 
     /*
-    public Command motorOn() {
-        return runOnce(
-            () -> {
-
-            });
-    }
-    */
+     * public Command motorOn() {
+     * return runOnce(
+     * () -> {
+     * 
+     * });
+     * }
+     */
 
     public void setFalcon(double speed) {
         falcon.set(speed);
@@ -38,7 +37,7 @@ public class BinarySubsystem extends SubsystemBase {
 
     }
 
-    @Override 
+    @Override
     public void simulationPeriodic() {
 
     }
