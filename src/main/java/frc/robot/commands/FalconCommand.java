@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class FalconCommand extends Command {
     @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
 
-    private final FalconSubsytem binarySubsystem;
+    private final FalconSubsytem falconSubsytem;
 
     public FalconCommand(FalconSubsytem subsystem) {
-        binarySubsystem = subsystem;
+        falconSubsytem = subsystem;
 
         addRequirements(subsystem);
     }
@@ -22,18 +22,18 @@ public class FalconCommand extends Command {
     public void execute() {
         System.out.println("Falcon speed set to 30%");
 
-        binarySubsystem.setFalcon(0.3);
+        falconSubsytem.setFalcon(0.3);
     }
 
     @Override
     public void end(boolean interrupted) {
         System.out.println("Falcon speed set to 0%");
 
-        binarySubsystem.setFalcon(0.0);
+        falconSubsytem.setFalcon(0.0);
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return falconSubsytem.getLimitSwitchState();
     }
 }
