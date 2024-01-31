@@ -12,17 +12,8 @@ public class FalconSubsytem extends SubsystemBase {
     ADIS16448_IMU gyro = new ADIS16448_IMU();
 
     public FalconSubsytem() {
-        falcon = new TalonFX(0);
+        falcon = new TalonFX(3);
     }
-
-    /*
-     * public Command motorOn() {
-     * return runOnce(
-     * () -> {
-     * 
-     * });
-     * }
-     */
 
     public void setFalcon(double speed) {
         falcon.set(speed);

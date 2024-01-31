@@ -10,7 +10,7 @@ public class NeoSubsystem extends SubsystemBase {
     private final CANSparkMax neo;
 
     public NeoSubsystem() {
-        neo = new CANSparkMax(1, MotorType.kBrushless);
+        neo = new CANSparkMax(2, MotorType.kBrushless);
 
         neo.setIdleMode(IdleMode.kBrake);
     }
