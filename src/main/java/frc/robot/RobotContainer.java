@@ -7,9 +7,9 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.BinaryCommand;
+import frc.robot.commands.FalconCommand;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.BinarySubsystem;
+import frc.robot.subsystems.FalconSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -29,9 +29,9 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final BinarySubsystem binarySubsystem = new BinarySubsystem();
+  private final FalconSubsystem binarySubsystem = new FalconSubsystem();
 
-  private final BinaryCommand binaryCommand = new BinaryCommand(binarySubsystem);
+  private final FalconCommand binaryCommand = new FalconCommand(binarySubsystem);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

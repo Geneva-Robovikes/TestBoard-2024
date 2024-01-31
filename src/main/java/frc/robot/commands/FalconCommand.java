@@ -1,14 +1,14 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.BinarySubsystem;
+import frc.robot.subsystems.FalconSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class BinaryCommand extends Command {
+public class FalconCommand extends Command {
     @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
 
-    private final BinarySubsystem binarySubsystem;
+    private final FalconSubsystem binarySubsystem;
 
-    public BinaryCommand(BinarySubsystem subsystem) {
+    public FalconCommand(FalconSubsystem subsystem) {
         binarySubsystem = subsystem;
 
         addRequirements(subsystem);
