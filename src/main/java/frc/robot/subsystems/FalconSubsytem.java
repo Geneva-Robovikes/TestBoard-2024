@@ -6,12 +6,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj.ADIS16448_IMU;
 
-public class BinarySubsystem extends SubsystemBase {
+public class FalconSubsytem extends SubsystemBase {
     TalonFX falcon;
 
     ADIS16448_IMU gyro = new ADIS16448_IMU();
 
-    public BinarySubsystem() {
+    public FalconSubsytem() {
         falcon = new TalonFX(0);
     }
 
