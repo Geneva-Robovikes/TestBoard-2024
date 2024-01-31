@@ -20,7 +20,7 @@ public class FalconCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.println("Falcon sspeed set to 30%");
+        System.out.println("Falcon speed set to 30%");
 
         binarySubsystem.setFalcon(0.3);
     }
