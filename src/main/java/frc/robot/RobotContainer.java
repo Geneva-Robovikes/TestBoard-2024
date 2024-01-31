@@ -8,8 +8,10 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.FalconCommand;
+import frc.robot.commands.NeoCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FalconSubsystem;
+import frc.robot.subsystems.NeoSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -29,9 +31,11 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final FalconSubsystem binarySubsystem = new FalconSubsystem();
+  private final FalconSubsystem falconSubsystem = new FalconSubsystem();
+  private final NeoSubsystem neoSubsystem = new NeoSubsystem();
 
-  private final FalconCommand binaryCommand = new FalconCommand(binarySubsystem);
+  private final FalconCommand falconCommand = new FalconCommand(falconSubsystem);
+  private final NeoCommand neoCommand = new NeoCommand(neoSubsystem);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -64,7 +68,8 @@ public class RobotContainer {
     // pressed,
     // cancelling on release.
     controller.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-    controller.a().whileTrue(binaryCommand);
+    controller.a().whileTrue(falconCommand);
+    controller.x().whileTrue(neoCommand);
   }
 
   /**
