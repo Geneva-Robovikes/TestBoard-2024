@@ -11,7 +11,7 @@ public class FalconSubsystem extends SubsystemBase {
     ADIS16448_IMU gyro = new ADIS16448_IMU();
 
     public FalconSubsystem() {
-        falcon = new TalonFX(0);
+        falcon = new TalonFX(3);
     }
 
     public void setFalcon(double speed) { //public void setFalcon
