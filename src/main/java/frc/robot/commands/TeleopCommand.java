@@ -3,41 +3,63 @@ package frc.robot.commands;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.subsystems.NeoSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
 
 public class TeleopCommand extends Command {
-    private final NeoSubsystem neoSubsystem;
-    private final CommandXboxController neoController;
+    private final DriveSubsystem driveSubsystem;
+    private final CommandXboxController driveController;
 
-    private final double maxSpeed = OperatorConstants.maxNeoSpeed;
+    private final double maxSpeedXY = Constants.maxTranlationalDriveSpeed;
+    private final double maxSpeedTheta = Constants.maxRotationalDriveSpeed;
+    boolean isFieldCentric = true;
 
-    public TeleopCommand(NeoSubsystem subsystem, CommandXboxController controller) {
-        neoSubsystem = subsystem;
-        neoController = controller;
+    public TeleopCommand(DriveSubsystem subsystem, CommandXboxController controller) {
+        driveSubsystem = subsystem;
+        driveController = controller;
 
-        addRequirements(neoSubsystem);
+        addRequirements(driveSubsystem);
     }
 
-    @Override
     public void execute() {
-        double controllerValue = Math.signum(-neoController.getLeftY()) * Math.pow(neoController.getLeftY(), 2);
+        // Squares inputs so fine movements are easier to make
+        double x1 = Math.signum(driveController.getLeftX()) * Math.pow(driveController.getLeftX(), 2);
+        double y1 = Math.signum(-driveController.getLeftY()) * Math.pow(driveController.getLeftY(), 2);
+        double x2 = Math.signum(-driveController.getRightX()) * Math.pow(driveController.getRightX(), 2);
+        double rightTrigger = driveController.getRightTriggerAxis();
 
-        controllerValue = MathUtil.applyDeadband(controllerValue, OperatorConstants.controllerDeadzone);
+        // If the right controller is pressed, drive switches to robot centric
+        if (rightTrigger > 0.5) {
+            isFieldCentric = false;
+        } else {
+            isFieldCentric = true;
+        }
 
-        neoSubsystem.setNeo(controllerValue);
+        // controlls to reset gyro
+        if (driveController.rightTrigger().getAsBoolean()) {
+            driveSubsystem.resetGyro();
+        }
 
+        // Applies a deadzone to the controller inpts
+        x1 = MathUtil.applyDeadband(x1, OperatorConstants.controllerDeadzone);
+        y1 = MathUtil.applyDeadband(y1, OperatorConstants.controllerDeadzone);
+        x2 = MathUtil.applyDeadband(x2, OperatorConstants.controllerDeadzone);
+
+        // Switches inputs to speeds in meters per second
+        double vX = y1 * maxSpeedXY;
+        double vY = x1 * maxSpeedXY;
+        double vTheta = x2 * maxSpeedTheta;
+
+        // Sets the drive speeds
+        driveSubsystem.setModuleStatesFromSpeeds(vX, vY, vTheta, isFieldCentric);
     }
 
-    @Override
     public void end(boolean interrupted) {
-        System.out.println("Set NEO speed to 0%");
-        neoSubsystem.setNeo(0.0);
+        driveSubsystem.setModuleStatesFromSpeeds(0, 0, 0, isFieldCentric);
     }
-  
-    @Override
+
     public boolean isFinished() {
         return false;
     }
-
 }
