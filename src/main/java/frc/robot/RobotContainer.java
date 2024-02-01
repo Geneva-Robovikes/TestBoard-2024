@@ -13,7 +13,6 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FalconSubsytem;
 import frc.robot.subsystems.NeoSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 

@@ -9,9 +9,7 @@ import frc.robot.subsystems.NeoSubsystem;
 public class TeleopCommand extends Command {
     private final NeoSubsystem neoSubsystem;
     private final CommandXboxController neoController;
-
-    private final double maxSpeed = OperatorConstants.maxNeoSpeed;
-
+    
     public TeleopCommand(NeoSubsystem subsystem, CommandXboxController controller) {
         neoSubsystem = subsystem;
         neoController = controller;
