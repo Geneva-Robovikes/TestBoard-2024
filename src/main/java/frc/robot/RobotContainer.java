@@ -7,9 +7,12 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Falcon2Command;
 import frc.robot.commands.FalconCommand;
 import frc.robot.commands.TeleopCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Falcon2Subsystem;
+import frc.robot.subsystems.Falcon2subsystem;
 import frc.robot.subsystems.FalconSubsytem;
 import frc.robot.subsystems.NeoSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,8 +37,10 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final FalconSubsytem falconSubsytem = new FalconSubsytem();
   private final NeoSubsystem neoSubsystem = new NeoSubsystem();
+  private final Falcon2Subsystem falcon2Subsystem = new Falcon2Subsystem();
 
   private final FalconCommand falconCommand = new FalconCommand(falconSubsytem);
+  private final Falcon2Command falcon2Command = new Falcon2Command(falcon2Subsystem);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -69,6 +74,7 @@ public class RobotContainer {
     // cancelling on release.
     controller.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     controller.a().whileTrue(falconCommand);
+    controller.x().whileTrue(falcon2Command);
   }
 
   /**
