@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -9,6 +8,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class FalconSubsytem extends SubsystemBase {
     TalonFX falcon;
+    TalonFX falcon2;
     DigitalInput limitSwitch;
 
 
@@ -16,12 +16,14 @@ public class FalconSubsytem extends SubsystemBase {
 
     public FalconSubsytem() {
         falcon = new TalonFX(3);
+        falcon2 = new TalonFX(4);
 
         limitSwitch = new DigitalInput(9);
     }
 
     public void setFalcon(double speed) {
         falcon.set(speed);
+        falcon2.set(speed);
     }
 
     public boolean getLimitSwitchState() {
