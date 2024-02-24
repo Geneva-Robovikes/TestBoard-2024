@@ -19,6 +19,7 @@ public class FalconSubsystem extends SubsystemBase {
     public void setFalcon(double speed) { //public void setFalcon
         falcon.set(speed);
         falcon2.set(speed);
+
     }
 
     @Override
